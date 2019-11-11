@@ -1,0 +1,4 @@
+<input #file type="file" (change)="this.upload(file.files)" *ngIf="!this.loading">
+<div *ngIf="this.loading">
+    <mat-spinner></mat-spinner>
+</div>

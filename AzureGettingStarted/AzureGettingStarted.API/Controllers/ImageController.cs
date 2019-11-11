@@ -38,8 +38,7 @@ namespace AzureGettingStarted.API.Controllers
                 Url = urlBlob,
                 VisionResult = visionResult
             };
-            return true;
-            //return await _repository.Insert(image);
+            return await _repository.Insert(imageResult);
         }
     }
 }

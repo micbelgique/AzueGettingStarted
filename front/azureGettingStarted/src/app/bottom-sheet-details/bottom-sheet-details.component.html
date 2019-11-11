@@ -1,0 +1,62 @@
+
+<mat-tab-group>
+    <mat-tab label="Categories">
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of this.data.categories">{{item.name}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Adult">
+        <mat-list role="list">
+            <mat-list-item>It's adult content: {{this.data.adult.isAdultContent}}</mat-list-item>
+            <mat-list-item>It's racy content: {{this.data.adult.isRacyContent}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Description">
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of this.data.description.captions">caption: {{item.text}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Color">
+        <mat-list role="list">
+            <mat-list-item >Dominant Color Foreground: {{this.data.color.dominantColorForeground}}</mat-list-item>
+            <mat-list-item >Dominant Color Background: {{this.data.color.dominantColorBackground}}</mat-list-item>
+            <mat-list-item >Dominant colors: <p *ngFor="let item of this.data.color.dominantColors">- {{item}} </p></mat-list-item>
+            <mat-list-item >Accent Color:  <div class="color-box" [ngStyle]="{'background-color': '#' + data.color.accentColor}"></div></mat-list-item>
+            <mat-list-item >Is the image black & white ?: {{this.data.color.isBwImg}}</mat-list-item>
+
+        </mat-list>
+    </mat-tab>    
+    <mat-tab label="Image Type">
+        <mat-list role="list">
+            <mat-list-item >Clip Art Type: {{this.data.imageType.clipArtType == 0 ? "Non-clip-art" : this.data.imageType.clipArtType == 1 ? "Ambiguous":this.data.imageType.clipArtType == 2 ? "Normal-clip-art":"Good-clip-art"}}</mat-list-item>
+            <mat-list-item >Line Drawing: {{this.data.imageType.lineDrawingType == 1 ? "Yes" : "No"}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Tags">
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of this.data.tags">Name: {{item.name}} | Confidence: {{item.confidence}}</mat-list-item>
+        </mat-list>
+    </mat-tab>    
+    <mat-tab label="Faces">
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of this.data.faces">Face: {{item.age}} years old | {{item.gender}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Objects">
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of this.data.objects">Object: {{item.object}} | Confidence: {{item.confidence}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Brands">
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of this.data.brands">Brand: {{item.name}} | Confidence: {{item.confidence}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+    <mat-tab label="Meta Data">
+        <mat-list role="list">
+            <mat-list-item>Height: {{this.data.metadata.height}}</mat-list-item>
+            <mat-list-item>width: {{this.data.metadata.width}}</mat-list-item>
+            <mat-list-item>format: {{this.data.metadata.format}}</mat-list-item>
+        </mat-list>
+    </mat-tab>
+</mat-tab-group>
