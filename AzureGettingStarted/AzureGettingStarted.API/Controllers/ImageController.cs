@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AzureGettingStarted.Repository;
+using AzureGettingStarted.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace AzureGettingStarted.API.Controllers
 {
@@ -11,8 +13,12 @@ namespace AzureGettingStarted.API.Controllers
     public class ImageController : ControllerBase
     {
         private readonly IRepository<Image> _repository;
-        public ImageController(Context dbContext)
+        private readonly VisionService _visionService;
+        private readonly BlobService _blobService;
+        public ImageController(Context dbContext, VisionService visionService,BlobService blobService)
         {
+            _visionService = visionService;
+            _blobService = blobService;
             _repository = new ImageRepository(dbContext);
         }
         [HttpGet]
@@ -21,9 +27,19 @@ namespace AzureGettingStarted.API.Controllers
             return _repository.GetAll();
         }
         [HttpPost]
-        public async Task<bool> AddImage(Image image)
+        public async Task<bool> AddImage(IFormFile image)
         {
-            return await _repository.Insert(image);
+            if (image.Length <= 0) return false;
+            var data = image.OpenReadStream();
+            var urlBlob = await _blobService.AddAFile(data,image.FileName);
+            var visionResult = await _visionService.GetDetailsImage(urlBlob);
+            var imageResult = new Image
+            {
+                Url = urlBlob,
+                VisionResult = visionResult
+            };
+            return true;
+            //return await _repository.Insert(image);
         }
     }
 }

@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AzureGettingStarted.Model\AzureGettingStarted.Model.csproj" />
     <ProjectReference Include="..\AzureGettingStarted.Repository\AzureGettingStarted.Repository.csproj" />
+    <ProjectReference Include="..\AzureGettingStarted.Services\AzureGettingStarted.Services.csproj" />
   </ItemGroup>
 
 </Project>

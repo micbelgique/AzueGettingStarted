@@ -1,6 +1,10 @@
+using System;
+using System.Net.Http.Headers;
 using AzureGettingStarted.Repository;
+using AzureGettingStarted.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +27,16 @@ namespace AzureGettingStarted.API
             services.AddControllers();
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            services.AddHttpClient<VisionService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["VisionFunctionUrl"]);
+            });
+            services.AddHttpClient<BlobService>(client =>
+            {
+                client.BaseAddress = new Uri(
+                    Configuration["BlobAdress"]);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SharedKey", Configuration["BlobSharedKey"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
