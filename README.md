@@ -20,6 +20,10 @@ Après l'installation, télécharger le plugin Azure Tools dans le market [Azure
 Pour tester nos déploiements dans le cloud, nous utiliserons Postman!
 [Télécharger Postman](https://www.getpostman.com/)
 
+## Architecture
+
+![Architecture](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Architecture.png)
+
 ## Step by step
 
 1. Téléchargez le code
@@ -81,3 +85,62 @@ Et créez un container 'pictures' en le mettant en acces level 'blob'
 
 18. Mettez de côté le SAS Token pour plus tard
 ![SAS Token get](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-GetSharedAccess.png)
+
+19. Allez dans le Ressource Group et appuyez sur le bouton Add. Ensuite, cherchez web app + sql pour héberger l'API
+![Create web app + sql](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Apisql.png)
+
+20. Ensuite, configurez comme sur l'image votre web app + sql
+![Configure web app + sql](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Apisql-configure.png)
+
+21. Récupérez comme pour la fonction, le publish profile de la web app
+![Get Publish Profile](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-PublishProfile.png)
+
+22. Ouvrez Visual Studio et allez dans la partie API. Là, ouvrez le appsettings.json et insérez les données demandées: l'adresse de la fonction, la clé pour le blob(SAS Token) ainsi que le l'adresse du blob qui se construit :
+
+    ``` javascript
+    https://_lenomdublob_.blob.core.windows.net/pictures
+    ```
+
+    ![AppSettings](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-AppSettings.png)
+
+23. Pour la base de données, allez dans Azure, dans la base de données et récupérez la connection string
+![Connection String](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-ConnectionString.png)
+
+24. Ensuite, mettez cette connection string dans l'appsettings et modifiez le mot de passe
+![Connection String AppSettings](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-AppSettingsConnectionString.png)
+
+25. Après avoir mis la connection string, vous pouvez aller dans le package manager console et tapez:
+
+    ``` powershell
+    update-database
+    ```
+
+    Ainsi vous mettrez à jour la base de données que vous venez de créer
+    ![Package Manager Consol](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-PackageManagerConsole.png)
+
+26. Comme pour la fonction, vous pouvez import le publish profile pour l'API
+![Import Profile API](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-ImportProfile.png)
+Et finir par le publier
+![Publish API](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-Publish.png)
+
+27. Vous pouvez tester les 2 fonctions de l'API avec Postman et l'url
+![Get function](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-Test-Getpng.png)
+![Post function](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-API-Test-Post.png)
+
+28. Allez dans le Ressource Group et appuyez sur le bouton Add. Ensuite, chercher après une Web App.
+![Create Ressource Angular](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Angular.png)
+
+29. Configurer ensuite la web app en mettant le nom, la région et l'App Service Plan
+![Ressource Config Anguler](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Angular-Config.png)
+
+30. Quand vous voyez que tout marche, vous pouvez aller sur Visual Studio Code et allez dans backend.service.ts et mettre dans la définiton de l'endpoint l'url.
+![Backend Enpoint](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-Angular-Config.png)
+
+31. Après ca, vous pouvez lancer la build de l'application Angular en écrivant ceci dans le terminal:
+
+    ``` cmd
+        ng-build --prod
+    ```
+
+    Après que tout ça soit compilé, vous pouvez aller dans l'Azure Tools et trouver votre web app pour l'application Angular. Faites un clic droit dessus et publish. Après ceci, choississez votre dist folder.
+    ![Publish select](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-Angular-Deploy-Select.png)
