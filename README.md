@@ -65,4 +65,19 @@ Ensuite, cherchez Function App
 ![Publish Function](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-Function-Publish.png)
 
 14. Testez votre Azure Function qui s'occupe de communiquer avec Computer Vision avec postman et l'adresse URL que vous trouverez sur Azure. Vous pouvez mettre une url d'image comme sur la photo
-![Test Azure Function](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-Function-Publish.png)
+![Test Azure Function](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-Function-Test.png)
+
+15. Dans le Ressource Group, cliquez sur le bouton Add et cherchez Storage Account et configurez le
+![Storage account search](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-StorageAccount.png)
+![Configure storage account](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-Configure.png)
+
+16. Ensuite, allez dans Containers
+![Go to Containers](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-Containers.png)
+Et créez un container 'pictures' en le mettant en acces level 'blob'
+![Containers new](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-Containers-New.png)
+
+17. Créez une shared acces signature et configurer le avec les adresses IPs
+![Shared Acces Signature New](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-SharedAccess.png)
+
+18. Mettez de côté le SAS Token pour plus tard
+![SAS Token get](https://github.com/micbelgique/AzureGettingStarted/blob/master/images/Azure-CreateRessource-Blob-GetSharedAccess.png)
