@@ -1,8 +1,8 @@
 # AzureGettingStarted
 
-Ce Azure Getting Started a été réalisé pour un séminaire donné à HEPH Condorcet Mons le 12 novembre 2019.
+1. Ce Azure Getting Started a été réalisé pour un séminaire donné à HEPH Condorcet Mons le 12 novembre 2019.
 Il a été réalisé par [Adrien Clerbois](https://www.linkedin.com/in/aclerbois/) et [Nathan Pire](https://www.linkedin.com/in/nathanpire/)
-
+2. Ce Azure Getting Started a été donné en session à EPHEC Louvain-La-Neuve le 18 novembre 2019 par Stephane Deloison et [Nathan Pire](https://www.linkedin.com/in/nathanpire/)
 ## Les programmes à installer
 
 ### Visual Studio 2019
